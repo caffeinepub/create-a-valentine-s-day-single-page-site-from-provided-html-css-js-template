@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+@layer base {
+    :root {
+        --radius: 1.25rem;
+        --background: 0.98 0.02 340;
+        --foreground: 0.98 0 0;
+        --card: 0.98 0.01 340;
+        --card-foreground: 0.98 0 0;
+        --popover: 0.98 0.01 340;
+        --popover-foreground: 0.98 0 0;
+        --primary: 0.65 0.22 350;
+        --primary-foreground: 0.98 0 0;
+        --secondary: 0.95 0.05 340;
+        --secondary-foreground: 0.2 0 0;
+        --muted: 0.95 0.03 340;
+        --muted-foreground: 0.6 0.05 340;
+        --accent: 0.92 0.08 345;
+        --accent-foreground: 0.2 0 0;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.985 0 0;
+        --border: 0.9 0.05 340;
+        --input: 0.9 0.05 340;
+        --ring: 0.7 0.15 345;
+        --chart-1: 0.65 0.22 350;
+        --chart-2: 0.7 0.18 340;
+        --chart-3: 0.75 0.15 355;
+        --chart-4: 0.8 0.12 330;
+        --chart-5: 0.85 0.1 345;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-family: 'Poppins', sans-serif;
+    }
+}
+
+/* Valentine's Day Gradient Background */
+.valentine-gradient {
+    background: linear-gradient(135deg, #ff5f9e 0%, #ff7eb3 50%, #ffa8c5 100%);
+    min-height: 100vh;
+}
+
+/* Valentine Card Styling */
+.valentine-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1.25rem;
+    padding: 1.875rem;
+    margin: 1.25rem 0;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.valentine-card:hover {
+    transform: scale(1.02);
+}
+
+/* Detail Box Styling */
+.detail-box {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 0.9375rem;
+    border-radius: 0.9375rem;
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 500;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Valentine Button Styling */
+.valentine-btn {
+    background: white;
+    color: #ff3c7e;
+    border: none;
+    padding: 0.9375rem 2.1875rem;
+    font-size: 1.1rem;
+    border-radius: 1.875rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.valentine-btn:hover {
+    background: #ff3c7e;
+    color: white;
+    transform: scale(1.08);
+}
+
+/* Quote Block Styling */
+.quote-block {
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-top: 1.875rem;
+    padding: 1.25rem;
+    border-left: 5px solid white;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 0.9375rem;
+    text-align: center;
+}
+
+/* Secret Input Styling */
+.secret-input {
+    padding: 0.75rem;
+    border-radius: 0.9375rem;
+    border: none;
+    width: 80%;
+    max-width: 300px;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    color: #333;
+}
+
+.hint {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-top: 0.5rem;
+}
+
+/* Popup Styling */
+.popup-content {
+    background: white;
+    color: #ff3c7e;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    max-width: 650px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
+    animation: popupAnim 0.4s ease;
+    position: relative;
+}
+
+/* Animations */
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.heartbeat-animation {
+    animation: heartbeat 1s infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-900px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes burst {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2) translateY(-200px);
+        opacity: 0;
+    }
+}
+
+.burst-heart {
+    position: fixed;
+    font-size: 25px;
+    animation: burst 1.2s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes popupAnim {
+    from { 
+        transform: scale(0.6); 
+        opacity: 0; 
+    }
+    to { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+.popup-fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .valentine-card {
+        padding: 1.5rem;
+    }
+    
+    .quote-block {
+        font-size: 1.1rem;
+    }
+    
+    .detail-box {
+        min-width: 100%;
+    }
+}

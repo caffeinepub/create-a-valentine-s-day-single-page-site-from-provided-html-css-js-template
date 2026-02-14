@@ -1,0 +1,225 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Valentine’s Day single-page React SPA (template recreation)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build the single-page SPA structure in React/TypeScript matching the provided template (hearts background, header, content cards/sections, quote, footer).",
+      "acceptanceCriteria": [
+        "The page renders all sections present in the provided HTML (header, 6 content cards including the secret section, quote, footer).",
+        "The layout matches the original intent: centered content, max-width container, glassmorphism cards, and a pink gradient background.",
+        "No inline HTML/JS is used; the page is implemented as React components with JSX."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the SPA root that renders the full Valentine’s Day page layout (floating hearts background layer, header, the ordered set of 6 content cards/sections including the secret section, quote block, and footer) using React (TSX) components; wire all subcomponents so nothing is orphaned."
+        },
+        {
+          "path": "frontend/src/pages/ValentinePage.tsx",
+          "operation": "create",
+          "description": "Create the single page container component that composes header, cards/sections, quote, and footer into the exact sequence/structure from the provided template and keeps everything centered within a max-width layout."
+        },
+        {
+          "path": "frontend/src/components/valentine/FloatingHeartsBackground.tsx",
+          "operation": "create",
+          "description": "Create a background-only component that renders the floating hearts layer behind the page content (non-interactive, pointer-events disabled) and can be placed at the top of the SPA layout."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineHeader.tsx",
+          "operation": "create",
+          "description": "Create the header component with title/subtitle and the clickable heart element (the click behavior is implemented under REQ-3); keep the structure aligned with the provided HTML intent."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable glassmorphism card wrapper used by each of the 6 content sections to enforce consistent structure, spacing, and styling across sections."
+        },
+        {
+          "path": "frontend/src/components/valentine/QuoteBlock.tsx",
+          "operation": "create",
+          "description": "Create a dedicated quote block component to match the template’s quote section layout and typography."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineFooter.tsx",
+          "operation": "create",
+          "description": "Create the footer component to match the template’s footer content and alignment."
+        },
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Ensure the app renders the new SPA by importing/using the created App component (keep existing providers intact) so the Valentine page is what appears at launch."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Recreate the original styling with Tailwind and minimal custom CSS for keyframe animations (gradient background, glass cards, hover scale, buttons, typography, animations).",
+      "acceptanceCriteria": [
+        "The background uses the same (or visually equivalent) pink gradient and white text.",
+        "Cards have a translucent/blurred glass appearance and subtly scale on hover.",
+        "Heartbeat, floating-hearts, and burst animations are implemented and visually work as in the template."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Add Tailwind base/components/utilities plus minimal custom CSS needed for keyframes and shared Valentine theme primitives (pink gradient background, glass card effect helpers, heartbeat/floatUp/burst animations) while keeping styling primarily Tailwind-driven."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme tokens/utilities as needed to support the Valentine design direction (e.g., consistent radii/shadows/animation names used by components) while keeping the palette centered on the provided pink gradient."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineCard.tsx",
+          "operation": "modify",
+          "description": "Apply Tailwind classes for glassmorphism (translucency + blur), consistent padding/spacing, and hover scale behavior so all sections match the template’s card feel."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineHeader.tsx",
+          "operation": "modify",
+          "description": "Apply Tailwind typography scale and the heartbeat animation styling for the header heart (keyframes provided via index.css) to match the template."
+        },
+        {
+          "path": "frontend/src/components/valentine/FloatingHeartsBackground.tsx",
+          "operation": "modify",
+          "description": "Apply Tailwind positioning (fixed/inset layering) and hook up the floating hearts animation classes defined in index.css so the background effect is visible and behind the content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Implement all template JavaScript behaviors using React state/effects (heart burst, popups, random reasons, relationship timer, NO button movement, YES confirmation + burst, secret password unlock).",
+      "acceptanceCriteria": [
+        "Clicking the header heart triggers a visible burst of multiple hearts that animate upward and disappear.",
+        "The Love Letter popup opens/closes and blocks interaction with the background while open.",
+        "Clicking “Show Reason” replaces the placeholder text with one of the provided reasons, randomly selected.",
+        "The relationship timer displays days/hours/minutes/seconds since 2022-08-01 and updates once per second.",
+        "Hovering over the “NO” button causes it to move within the proposal box area (not off-screen).",
+        "Clicking “YES” shows a celebratory confirmation message (not a browser alert) and triggers the heart burst effect.",
+        "Entering the correct password (case-insensitive) opens the Secret Message popup; incorrect password shows an inline error (not a browser alert)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/HeartBurstLayer.tsx",
+          "operation": "create",
+          "description": "Create an overlay layer component responsible for rendering and animating a temporary burst of hearts on demand (spawn multiple hearts with randomized positions/offsets, animate upward, then remove)."
+        },
+        {
+          "path": "frontend/src/hooks/useHeartBurst.ts",
+          "operation": "create",
+          "description": "Create a small hook to manage heart-burst state and expose a trigger function used by the header heart and the YES button."
+        },
+        {
+          "path": "frontend/src/components/valentine/LoveLetterDialog.tsx",
+          "operation": "create",
+          "description": "Implement the Love Letter popup as a modal dialog using the shadcn-ui Dialog component to ensure proper overlay/blocking behavior; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/valentine/SecretMessageDialog.tsx",
+          "operation": "create",
+          "description": "Implement the Secret Message popup as a modal dialog using the shadcn-ui Dialog component; include support for opening only when password validation succeeds; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/valentine/ReasonsCard.tsx",
+          "operation": "create",
+          "description": "Create the ‘Reasons’ section/card with a ‘Show Reason’ button that selects a random reason from the provided list and replaces the placeholder text using React state."
+        },
+        {
+          "path": "frontend/src/hooks/useRelationshipTimer.ts",
+          "operation": "create",
+          "description": "Create a hook that computes elapsed time since 2022-08-01 and updates once per second, returning days/hours/minutes/seconds for display."
+        },
+        {
+          "path": "frontend/src/components/valentine/RelationshipTimerCard.tsx",
+          "operation": "create",
+          "description": "Create the timer section/card that displays the relationship duration using the timer hook and updates live once per second."
+        },
+        {
+          "path": "frontend/src/components/valentine/ProposalCard.tsx",
+          "operation": "create",
+          "description": "Create the proposal section/card with YES/NO buttons: NO repositions within the proposal container on hover; YES shows an in-card celebratory confirmation message and triggers the heart burst via the shared burst trigger."
+        },
+        {
+          "path": "frontend/src/components/valentine/SecretUnlockCard.tsx",
+          "operation": "create",
+          "description": "Create the secret section/card with password input and unlock button: validate case-insensitive match for 'bubu', show inline error message on failure, and open the Secret Message dialog on success."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineHeader.tsx",
+          "operation": "modify",
+          "description": "Wire header heart click to call the shared heart-burst trigger from the heart burst hook."
+        },
+        {
+          "path": "frontend/src/pages/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Compose and wire the interactive section components (Love letter open/close, reasons generator, relationship timer, proposal interactions, secret unlock + dialogs) and include the HeartBurstLayer so bursts render above content when triggered."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add/adjust the keyframe animations and utility classes needed by the heart burst and floating hearts effects (heartbeat, floatUp, burst) so they animate and clean up visually as in the template."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Translate all non-English (Hindi) user-facing template text into natural romantic English while preserving structure and meaning (including both popups).",
+      "acceptanceCriteria": [
+        "All visible text on the page and in popups is in English.",
+        "The Love Letter popup remains a multi-paragraph romantic note addressed to “Bubu”.",
+        "The Secret Message popup remains a multi-paragraph romantic note and includes the Valentine’s Day closing sentiment."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/LoveLetterDialog.tsx",
+          "operation": "modify",
+          "description": "Replace the provided Hindi Love Letter text with a natural multi-paragraph English love note addressed to “Bubu”, preserving the original romantic intent and structure."
+        },
+        {
+          "path": "frontend/src/components/valentine/SecretMessageDialog.tsx",
+          "operation": "modify",
+          "description": "Replace the provided Hindi secret message with a natural multi-paragraph English message, preserving the original reveal/closing sentiment for Valentine’s Day."
+        },
+        {
+          "path": "frontend/src/pages/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Ensure all remaining headings, labels, button texts, helper text, and section copy used across the page are in English and consistent with the template’s meaning."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply a consistent Valentine’s Day theme system (colors, typography, spacing, component styling) using the provided pink palette across the whole page.",
+      "acceptanceCriteria": [
+        "A single coherent style system is evident (consistent button styles, card styles, spacing, and typography across the whole page).",
+        "The theme remains Valentine’s Day/romantic and does not introduce unrelated color schemes (e.g., no dominant blue/purple palette)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/valentine/ValentineButton.tsx",
+          "operation": "create",
+          "description": "Create a small shared button component to enforce consistent Tailwind styling for primary/secondary actions across sections (hover/active states consistent). Optionally wrap/compose shadcn-ui Button for consistency; Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define the core Valentine theme look (page background gradient, default text color, consistent typography defaults) and any shared utility classes that keep spacing and styling coherent across all sections."
+        },
+        {
+          "path": "frontend/src/components/valentine/ValentineCard.tsx",
+          "operation": "modify",
+          "description": "Centralize the consistent card styling tokens (spacing, radius, glass effect, border/shadow) so every section uses the same visual system."
+        },
+        {
+          "path": "frontend/src/pages/ValentinePage.tsx",
+          "operation": "modify",
+          "description": "Ensure each section uses the shared ValentineCard and ValentineButton patterns to keep consistent spacing/typography and maintain the pink romantic palette across the entire single-page layout."
+        }
+      ]
+    }
+  ]
+}

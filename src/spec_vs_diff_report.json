@@ -1,0 +1,99 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T06:38:27.055Z",
+  "summary": "The diff adds many Valentine-themed React components, hooks, and CSS animations that appear to cover several requested UI/animation behaviors (floating hearts, heartbeat, burst layer, reasons generator, relationship timer, proposal YES/NO interactions, secret unlock dialog). However, key SPA composition evidence (the actual ValentinePage that renders the full required section sequence and wires all interactions together) is not shown in the provided diff summary, and several unrequested/excluded features were added (Internet Identity authentication hooks, backend actor scaffold, and external links/services).",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Render the full single-page layout recreating the provided HTML structure: header + a container with the same sequence of 6 content cards (including the secret section) + quote block + footer.",
+      "reason": "The diff summary does not include the page component (e.g., ValentinePage) that composes the header/cards/quote/footer into a single container or confirms the presence/ordering/count of all 6 cards/sections. Only individual components are shown.",
+      "evidence": [
+        "frontend/src/App.tsx (imports ValentinePage, but ValentinePage file/content not shown in diff summary)",
+        "Omitted files due to limits: added=7 (ValentinePage may be omitted, so composition cannot be verified)"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Wire up the interactive behaviors in the SPA: header heart click triggers burst; love letter popup open/close; YES triggers confirmation + burst; NO moves within proposal box; secret unlock triggers secret popup; overlay blocks background interaction.",
+      "reason": "While the building blocks exist (HeartBurstLayer/useHeartBurst, LoveLetterDialog, ProposalCard, SecretUnlockCard/SecretMessageDialog), the diff summary does not show the parent page wiring that connects these behaviors together (e.g., state to open LoveLetterDialog, passing onHeartClick/onYesClick/onUnlock to trigger burst). Therefore full behavior integration cannot be confirmed.",
+      "evidence": [
+        "frontend/src/components/valentine/ValentineHeader.tsx (expects onHeartClick prop, but no parent shown)",
+        "frontend/src/components/valentine/ProposalCard.tsx (expects onYesClick prop, but no parent shown)",
+        "frontend/src/components/valentine/SecretUnlockCard.tsx (expects onUnlock prop, but no parent shown)",
+        "frontend/src/components/valentine/LoveLetterDialog.tsx (open/onOpenChange provided, but no opener shown)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Introduced Internet Identity / authentication infrastructure (auth client, identity context/provider, actor creation, react-query actor hook).",
+      "reason": "BuildRequest explicitly disallows introducing third-party authentication or external services and states backend changes are not required for this static single-page experience.",
+      "evidence": [
+        "frontend/src/hooks/useInternetIdentity.ts",
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/main.tsx (wraps app with InternetIdentityProvider and react-query providers)"
+      ]
+    },
+    {
+      "description": "Added backend canister scaffold file.",
+      "reason": "Backend changes were stated as not required for a static single-page experience; adding backend code is unrequested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Added external outbound link to caffeine.ai in the footer.",
+      "reason": "BuildRequest says to keep the site self-contained and not introduce external services; an external referral link is not requested.",
+      "evidence": [
+        "frontend/src/components/valentine/ValentineFooter.tsx"
+      ]
+    },
+    {
+      "description": "Loads Google Fonts via CSS @import (external network dependency).",
+      "reason": "Self-contained constraint implies avoiding external dependencies for content/assets; importing fonts from fonts.googleapis.com is an external dependency and was not requested.",
+      "evidence": [
+        "frontend/src/index.css (@import url('https://fonts.googleapis.com/css2?family=Poppins...'))"
+      ]
+    },
+    {
+      "description": "Introduced third-party icon libraries (lucide-react and react-icons).",
+      "reason": "Not requested in the BuildRequest; adds extra dependencies beyond Tailwind/small custom CSS.",
+      "evidence": [
+        "frontend/src/components/valentine/LoveLetterDialog.tsx (imports X from 'lucide-react')",
+        "frontend/src/components/valentine/SecretMessageDialog.tsx (imports X from 'lucide-react')",
+        "frontend/src/components/valentine/ValentineFooter.tsx (imports SiCoffeescript from 'react-icons/si')"
+      ]
+    }
+  ],
+  "confidence": 0.62,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/valentine/FloatingHeartsBackground.tsx",
+    "frontend/src/components/valentine/HeartBurstLayer.tsx",
+    "frontend/src/components/valentine/LoveLetterDialog.tsx",
+    "frontend/src/components/valentine/ProposalCard.tsx",
+    "frontend/src/components/valentine/QuoteBlock.tsx",
+    "frontend/src/components/valentine/ReasonsCard.tsx",
+    "frontend/src/components/valentine/RelationshipTimerCard.tsx",
+    "frontend/src/components/valentine/SecretMessageDialog.tsx",
+    "frontend/src/components/valentine/SecretUnlockCard.tsx",
+    "frontend/src/components/valentine/ValentineCard.tsx",
+    "frontend/src/components/valentine/ValentineFooter.tsx",
+    "frontend/src/components/valentine/ValentineHeader.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useHeartBurst.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useRelationshipTimer.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/ValentinePage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-a-single-page-react-typescript-site-that-recreates-the-provided-html-structure-and-content-as-a-spa-page-including-floating-hearts-background-layer-header-with-title-subtitle-and-clickable-heart-a-container-with-the-same-sequence-of-cards-sections-the-quote-block-and-footer",
+      "featureTitle": "Implement a single-page React (TypeScript) site that recreates the provided HTML structure and content as a SPA page, including: floating hearts background layer, header with title/subtitle and clickable heart, a container with the same sequence of cards/sections, the quote block, and footer.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/valentine/FloatingHeartsBackground.tsx",
+        "frontend/src/components/valentine/QuoteBlock.tsx",
+        "frontend/src/components/valentine/ValentineCard.tsx",
+        "frontend/src/components/valentine/ValentineFooter.tsx",
+        "frontend/src/components/valentine/ValentineHeader.tsx",
+        "frontend/src/main.tsx",
+        "frontend/src/pages/ValentinePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-recreate-the-original-styling-using-tailwind-css-and-small-custom-css-only-when-necessary-for-keyframe-animations-including-pink-gradient-background-card-glass-effect-blur-hover-scale-on-cards-button-styling-hover-behavior-and-typography-scale-similar-to-the-template",
+      "featureTitle": "Recreate the original styling using Tailwind CSS (and small custom CSS only when necessary for keyframe animations), including: pink gradient background, card glass effect (blur), hover scale on cards, button styling/hover behavior, and typography scale similar to the template.",
+      "files": [
+        "frontend/src/components/valentine/FloatingHeartsBackground.tsx",
+        "frontend/src/components/valentine/ValentineCard.tsx",
+        "frontend/src/components/valentine/ValentineHeader.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-interactive-behaviors-from-the-provided-javascript-in-react-state-effects-1-heart-burst-effect-when-the-header-heart-is-clicked-2-love-letter-popup-open-close-3-reasons-generator-that-shows-a-random-reason-from-the-provided-list-4-relationship-timer-that-updates-every-second-from-the-provided-start-date-2022-08-01-5-no-button-moves-to-a-random-position-on-hover-6-yes-button-shows-a-celebratory-confirmation-and-triggers-heart-burst-7-secret-password-input-that-unlocks-a-secret-popup-when-the-password-matches-bubu-case-insensitive-and-shows-an-error-otherwise",
+      "featureTitle": "Implement the interactive behaviors from the provided JavaScript in React state/effects: (1) heart burst effect when the header heart is clicked, (2) love letter popup open/close, (3) reasons generator that shows a random reason from the provided list, (4) relationship timer that updates every second from the provided start date (\"2022-08-01\"), (5) “NO” button moves to a random position on hover, (6) “YES” button shows a celebratory confirmation and triggers heart burst, (7) secret password input that unlocks a secret popup when the password matches \"bubu\" (case-insensitive) and shows an error otherwise.",
+      "files": [
+        "frontend/src/components/valentine/HeartBurstLayer.tsx",
+        "frontend/src/components/valentine/LoveLetterDialog.tsx",
+        "frontend/src/components/valentine/ProposalCard.tsx",
+        "frontend/src/components/valentine/ReasonsCard.tsx",
+        "frontend/src/components/valentine/RelationshipTimerCard.tsx",
+        "frontend/src/components/valentine/SecretMessageDialog.tsx",
+        "frontend/src/components/valentine/SecretUnlockCard.tsx",
+        "frontend/src/components/valentine/ValentineHeader.tsx",
+        "frontend/src/hooks/useHeartBurst.ts",
+        "frontend/src/hooks/useRelationshipTimer.ts",
+        "frontend/src/index.css",
+        "frontend/src/pages/ValentinePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-convert-any-non-english-hindi-user-facing-text-from-the-provided-template-into-natural-english-while-preserving-the-romantic-meaning-and-structure-including-both-popup-messages-love-letter-and-secret-message",
+      "featureTitle": "Convert any non-English (Hindi) user-facing text from the provided template into natural English while preserving the romantic meaning and structure, including both popup messages (Love Letter and Secret Message).",
+      "files": [
+        "frontend/src/components/valentine/LoveLetterDialog.tsx",
+        "frontend/src/components/valentine/SecretMessageDialog.tsx",
+        "frontend/src/pages/ValentinePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-and-apply-a-consistent-visual-theme-direction-colors-typography-spacing-and-component-styling-that-fits-a-valentine-s-day-romantic-card-based-landing-page-keeping-the-provided-pink-palette-as-the-primary-direction-and-applying-it-consistently-across-all-sections",
+      "featureTitle": "Create and apply a consistent visual theme direction (colors, typography, spacing, and component styling) that fits a Valentine’s Day romantic card-based landing page, keeping the provided pink palette as the primary direction and applying it consistently across all sections.",
+      "files": [
+        "frontend/src/components/valentine/ValentineCard.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/ValentinePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

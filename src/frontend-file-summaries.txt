@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application entry component that renders the ValentinePage component.",
+  "frontend/src/pages/ValentinePage.tsx": "Main Valentine's Day page container that orchestrates all sections (header, cards, dialogs, footer) and manages shared state for popups and heart burst effects.",
+  "frontend/src/components/valentine/FloatingHeartsBackground.tsx": "Background layer component that renders animated floating hearts across the screen using CSS animations.",
+  "frontend/src/components/valentine/ValentineHeader.tsx": "Header component displaying the main title, subtitle, and clickable animated heart that triggers burst effects.",
+  "frontend/src/components/valentine/ValentineCard.tsx": "Reusable glassmorphism card wrapper component providing consistent styling for all content sections.",
+  "frontend/src/components/valentine/LoveLetterDialog.tsx": "Modal dialog component displaying a romantic love letter message with custom popup styling.",
+  "frontend/src/components/valentine/SecretMessageDialog.tsx": "Modal dialog component displaying the secret message unlocked by password entry.",
+  "frontend/src/components/valentine/ReasonsCard.tsx": "Interactive card component that displays random romantic reasons from a predefined list when button is clicked.",
+  "frontend/src/components/valentine/RelationshipTimerCard.tsx": "Card component displaying a live-updating timer showing elapsed time since relationship start date.",
+  "frontend/src/components/valentine/ProposalCard.tsx": "Interactive proposal card with YES/NO buttons where NO moves on hover and YES triggers celebration.",
+  "frontend/src/components/valentine/SecretUnlockCard.tsx": "Card component with password input that validates entry and opens secret message dialog on correct password.",
+  "frontend/src/components/valentine/QuoteBlock.tsx": "Styled quote block component displaying a romantic quote with distinctive border and background.",
+  "frontend/src/components/valentine/ValentineFooter.tsx": "Footer component with attribution, copyright, and Caffeine.ai branding link with UTM tracking.",
+  "frontend/src/components/valentine/HeartBurstLayer.tsx": "Overlay layer component that renders and animates multiple hearts bursting upward on trigger.",
+  "frontend/src/hooks/useHeartBurst.ts": "Custom hook managing heart burst animation state and providing trigger function for burst effects.",
+  "frontend/src/hooks/useRelationshipTimer.ts": "Custom hook calculating and updating elapsed time since relationship start date every second.",
+  "frontend/src/index.css": "Global styles including Valentine's Day gradient background, glassmorphism cards, button styles, animations (heartbeat, floatUp, burst), and responsive design.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with Valentine's Day color palette (pink tones in OKLCH), Poppins font family, custom shadows, and animation utilities."
+}

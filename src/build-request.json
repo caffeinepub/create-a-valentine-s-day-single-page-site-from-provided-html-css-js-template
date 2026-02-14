@@ -1,0 +1,114 @@
+{
+  "kind": "build_request",
+  "title": "Create a Valentine’s Day single-page site from provided HTML/CSS/JS template",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Implement a single-page React (TypeScript) site that recreates the provided HTML structure and content as a SPA page, including: floating hearts background layer, header with title/subtitle and clickable heart, a container with the same sequence of cards/sections, the quote block, and footer.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "use this code and create a site\n<!DOCTYPE html>\n<html lang=\"en\"> ..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "The page renders all sections present in the provided HTML (header, 6 content cards including the secret section, quote, footer).",
+        "The layout matches the original intent: centered content, max-width container, glassmorphism cards, and a pink gradient background.",
+        "No inline HTML/JS is used; the page is implemented as React components with JSX."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Recreate the original styling using Tailwind CSS (and small custom CSS only when necessary for keyframe animations), including: pink gradient background, card glass effect (blur), hover scale on cards, button styling/hover behavior, and typography scale similar to the template.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "<style>\n    body {\n      background: linear-gradient(to right, #ff5f9e, #ff7eb3);\n      color: white;\n      ...\n    }\n...\n    @keyframes heartbeat { ... }\n...\n    @keyframes floatUp { ... }\n...\n    @keyframes burst { ... }"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The background uses the same (or visually equivalent) pink gradient and white text.",
+        "Cards have a translucent/blurred glass appearance and subtly scale on hover.",
+        "Heartbeat, floating-hearts, and burst animations are implemented and visually work as in the template."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement the interactive behaviors from the provided JavaScript in React state/effects: (1) heart burst effect when the header heart is clicked, (2) love letter popup open/close, (3) reasons generator that shows a random reason from the provided list, (4) relationship timer that updates every second from the provided start date (\"2022-08-01\"), (5) “NO” button moves to a random position on hover, (6) “YES” button shows a celebratory confirmation and triggers heart burst, (7) secret password input that unlocks a secret popup when the password matches \"bubu\" (case-insensitive) and shows an error otherwise.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "<div class=\"heart\" onclick=\"heartBurst()\">💖</div>\n...\n<button class=\"btn\" onclick=\"openPopup()\">Open Love Letter 💌</button>\n...\n<button class=\"btn\" onclick=\"generateReason()\">Show Reason ❤️</button>\n...\n<button class=\"btn\" id=\"noBtn\" onmouseover=\"moveNoButton()\">NO 🙄</button>\n...\n<button class=\"btn\" onclick=\"unlockSecret()\">Unlock Surprise 🎁</button>\n...\nconst startDate = new Date(\"2022-08-01\");\n...\nconst correctPassword = \"bubu\";"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking the header heart triggers a visible burst of multiple hearts that animate upward and disappear.",
+        "The Love Letter popup opens/closes and blocks interaction with the background while open.",
+        "Clicking “Show Reason” replaces the placeholder text with one of the provided reasons, randomly selected.",
+        "The relationship timer displays days/hours/minutes/seconds since 2022-08-01 and updates once per second.",
+        "Hovering over the “NO” button causes it to move within the proposal box area (not off-screen).",
+        "Clicking “YES” shows a celebratory confirmation message (not a browser alert) and triggers the heart burst effect.",
+        "Entering the correct password (case-insensitive) opens the Secret Message popup; incorrect password shows an inline error (not a browser alert)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Convert any non-English (Hindi) user-facing text from the provided template into natural English while preserving the romantic meaning and structure, including both popup messages (Love Letter and Secret Message).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "Tum meri life ka sabse pyara part ho.\nTumhare bina sab kuch incomplete lagta hai.\n...\nAgar tum ye message padh rahi ho...\nmatlab tumne mera dil ka password crack kar liya ..."
+        ]
+      },
+      "acceptanceCriteria": [
+        "All visible text on the page and in popups is in English.",
+        "The Love Letter popup remains a multi-paragraph romantic note addressed to “Bubu”.",
+        "The Secret Message popup remains a multi-paragraph romantic note and includes the Valentine’s Day closing sentiment."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Create and apply a consistent visual theme direction (colors, typography, spacing, and component styling) that fits a Valentine’s Day romantic card-based landing page, keeping the provided pink palette as the primary direction and applying it consistently across all sections.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "<title>Happy Valentine's Day Bubu ❤️</title>\n...\nbackground: linear-gradient(to right, #ff5f9e, #ff7eb3);"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A single coherent style system is evident (consistent button styles, card styles, spacing, and typography across the whole page).",
+        "The theme remains Valentine’s Day/romantic and does not introduce unrelated color schemes (e.g., no dominant blue/purple palette)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend files under the immutable paths listed in SYSTEM_CONTEXT must not be modified; compose new components/pages instead.",
+    "Do not introduce third-party authentication or external services; keep the site self-contained.",
+    "Backend changes are not required for this static single-page experience; avoid adding backend dependencies unless strictly necessary."
+  ],
+  "nonGoals": [
+    "User accounts, saving/reading messages from the backend, or any persistent data storage.",
+    "Multi-page routing, admin panels, or content management features.",
+    "Real-time communication features (chat, websockets, notifications)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
